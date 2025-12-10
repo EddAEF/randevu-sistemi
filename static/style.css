@@ -565,31 +565,31 @@ body {
 
 @media (max-width: 768px) {
     html {
-        scroll-padding-top: 120px;
+        scroll-padding-top: 100px;
     }
 
     .header-content {
         flex-direction: column;
-        gap: 8px;
-        padding: 8px 0;
+        gap: 4px;
+        padding: 4px 0;
     }
     
     .nav-menu {
         flex-direction: row;
-        gap: 6px;
+        gap: 4px;
         width: 100%;
         justify-content: space-between;
         flex-wrap: nowrap;
-        padding: 0 4px;
+        padding: 0 2px;
     }
 
     .nav-link {
-        font-size: 11px;
-        padding: 8px 4px;
+        font-size: 10px;
+        padding: 6px 2px;
         background: rgba(255,255,255,0.1);
-        border-radius: 12px;
+        border-radius: 10px;
         flex-direction: column;
-        gap: 4px;
+        gap: 2px;
         flex: 1;
         justify-content: center;
         text-align: center;
@@ -597,7 +597,7 @@ body {
     }
     
     .nav-link i {
-        font-size: 18px;
+        font-size: 16px;
     }
     
     .logo {
