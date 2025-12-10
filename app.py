@@ -1,10 +1,21 @@
 from flask import Flask, render_template, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
+from flask_mail import Mail, Message
 from datetime import datetime
 import os
 
 # Flask Uygulamasını Oluştur
 app = Flask(__name__)
+
+# Mail Konfigürasyonu
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME')
+app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
+app.config['MAIL_DEFAULT_SENDER'] = os.environ.get('MAIL_USERNAME')
+
+mail = Mail(app)
 
 # Veritabanı Yapılandırması
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -107,8 +118,30 @@ def randevu_al():
         db.session.add(yeni_randevu)
         db.session.commit()
         
+        # E-posta Gönderimi
+        try:
+            msg = Message('Randevu Talebiniz Alındı',
+                          recipients=[email])
+            msg.body = f"""Sayın {ad_soyad},
+            
+Randevu talebiniz başarıyla alınmıştır. Detaylar aşağıdadır:
+
+Tarih: {tarih}
+Saat: {saat}
+Hizmet: {hizmet}
+Konu: {konu}
+
+En kısa sürede sizinle iletişime geçeceğiz.
+
+Saygılarımızla,
+Randevu Sistemi
+"""
+            mail.send(msg)
+        except Exception as e:
+            print(f"Mail gönderme hatası: {e}")
+
         return render_template('index.html', 
-            success_message=f'Randevunuz başarıyla oluşturuldu! Randevu ID: {yeni_randevu.id}. Kısa zamanda sizinle iletişime geçeceğiz.')
+            success_message=f'Randevunuz başarıyla oluşturuldu! Randevu ID: {yeni_randevu.id}. Bilgilendirme e-postası gönderildi.')
     
     except Exception as e:
         db.session.rollback()
@@ -124,7 +157,7 @@ def api_randevular():
 # API - Belirli Bir Randevuyu Al
 @app.route('/api/randevular/<int:id>')
 def api_randevu_detay(id):
-    randevu = Randevu.query.get_or_404(id)
+        randevu = Randevu.query.get_or_404(id)
     return jsonify(randevu.to_dict())
 
 # API - Randevu Durumunu Güncelle
