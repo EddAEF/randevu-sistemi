@@ -179,6 +179,10 @@ def sunucu_hatasi(error):
     return render_template('index.html', 
         error_message='Sunucu hatası oluştu. Lütfen daha sonra tekrar deneyin.'), 500
 
+# Vercel uyumluluğu için
 if __name__ == '__main__':
     # Geliştirme ortamı
     app.run(debug=True, host='0.0.0.0', port=5000)
+
+# Vercel production
+app.run = lambda: None
