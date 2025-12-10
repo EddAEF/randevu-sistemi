@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Randevu Sistemi - Online Randevu Al</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo">
+                    <i class="fas fa-calendar-check"></i>
+                    Randevu Sistemi
+                </a>
+                <nav class="nav-menu">
+                    <a href="/" class="nav-link active">
+                        <i class="fas fa-home"></i> Ana Sayfa
+                    </a>
+                    <a href="#hizmetler" class="nav-link">
+                        <i class="fas fa-briefcase"></i> Hizmetler
+                    </a>
+                    <a href="#iletisim" class="nav-link">
+                        <i class="fas fa-phone"></i> İletişim
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Kolaylıkla Randevunuzu Alın</h1>
+                <p>Şirketimize ait hizmetlerden yararlanmak için hızlı ve güvenli randevu sistemimizi kullanın</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="main-content">
+            <!-- Left Column -->
+            <div>
+                <!-- Services Section -->
+                <section class="services-section" id="hizmetler">
+                    <h2 class="section-title">
+                        <i class="fas fa-star"></i>
+                        Sunduğumuz Hizmetler
+                    </h2>
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <i class="fas fa-users"></i>
+                            <h3>Danışmanlık</h3>
+                            <p>Profesyonel danışmanlık hizmeti ile sorunlarınıza çözüm bulunuz</p>
+                        </div>
+                        <div class="service-card">
+                            <i class="fas fa-cogs"></i>
+                            <h3>Teknik Destek</h3>
+                            <p>24/7 teknik destek hizmeti ile işletmeniz her zaman güvenli</p>
+                        </div>
+                        <div class="service-card">
+                            <i class="fas fa-chart-line"></i>
+                            <h3>Raporlama</h3>
+                            <p>Detaylı raporlar ile işletmenizin performansını takip edin</p>
+                        </div>
+                        <div class="service-card">
+                            <i class="fas fa-shield-alt"></i>
+                            <h3>Güvenlik</h3>
+                            <p>En yüksek standartlarda güvenlik protokolleri uygulanır</p>
+                        </div>
+                        <div class="service-card">
+                            <i class="fas fa-headset"></i>
+                            <h3>Müşteri Hizmetleri</h3>
+                            <p>Tüm sorularınız için hazır destek ekibimiz</p>
+                        </div>
+                        <div class="service-card">
+                            <i class="fas fa-rocket"></i>
+                            <h3>Proje Yönetimi</h3>
+                            <p>Baştan sona profesyonel proje yönetimi hizmeti</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Appointment Form -->
+                <section class="form-container">
+                    <h2 class="form-title">
+                        <i class="fas fa-clipboard-list"></i>
+                        Randevu Talebiniz
+                    </h2>
+                    <p class="form-subtitle">Lütfen aşağıdaki formu doldurun, kısa zamanda sizinle iletişime geçeceğiz</p>
+
+                    {% if success_message %}
+                    <div class="alert alert-success">
+                        <i class="fas fa-check-circle"></i>
+                        {{ success_message }}
+                    </div>
+                    {% endif %}
+
+                    {% if error_message %}
+                    <div class="alert alert-error">
+                        <i class="fas fa-exclamation-circle"></i>
+                        {{ error_message }}
+                    </div>
+                    {% endif %}
+
+                    <form method="POST" action="/randevu-al" class="randevu-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="ad_soyad">
+                                    <i class="fas fa-user"></i> Ad Soyad
+                                </label>
+                                <input type="text" id="ad_soyad" name="ad_soyad" placeholder="Adınız Soyadınız" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="telefon">
+                                    <i class="fas fa-phone"></i> Telefon
+                                </label>
+                                <input type="tel" id="telefon" name="telefon" placeholder="+90 (555) 000-0000" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">
+                                <i class="fas fa-envelope"></i> E-posta
+                            </label>
+                            <input type="email" id="email" name="email" placeholder="ornek@email.com" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="tarih">
+                                    <i class="fas fa-calendar"></i> Tercih Ettiğiniz Tarih
+                                </label>
+                                <input type="date" id="tarih" name="tarih" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="saat">
+                                    <i class="fas fa-clock"></i> Tercih Ettiğiniz Saat
+                                </label>
+                                <select id="saat" name="saat" required>
+                                    <option value="">Saat Seçiniz</option>
+                                    <option value="09:00">09:00</option>
+                                    <option value="09:30">09:30</option>
+                                    <option value="10:00">10:00</option>
+                                    <option value="10:30">10:30</option>
+                                    <option value="11:00">11:00</option>
+                                    <option value="11:30">11:30</option>
+                                    <option value="14:00">14:00</option>
+                                    <option value="14:30">14:30</option>
+                                    <option value="15:00">15:00</option>
+                                    <option value="15:30">15:30</option>
+                                    <option value="16:00">16:00</option>
+                                    <option value="16:30">16:30</option>
+                                    <option value="17:00">17:00</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="hizmet">
+                                <i class="fas fa-list"></i> Hizmet Türü
+                            </label>
+                            <select id="hizmet" name="hizmet" required>
+                                <option value="">Hizmet Seçiniz</option>
+                                <option value="Danışmanlık">Danışmanlık</option>
+                                <option value="Teknik Destek">Teknik Destek</option>
+                                <option value="Raporlama">Raporlama</option>
+                                <option value="Güvenlik">Güvenlik</option>
+                                <option value="Müşteri Hizmetleri">Müşteri Hizmetleri</option>
+                                <option value="Proje Yönetimi">Proje Yönetimi</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="konu">
+                                <i class="fas fa-heading"></i> Randevu Konusu
+                            </label>
+                            <input type="text" id="konu" name="konu" placeholder="Randevunuzun konusu" required>
+                        </div>
+
+                        <div class="form-group form-row full">
+                            <label for="aciklama">
+                                <i class="fas fa-comment"></i> Detaylı Açıklama
+                            </label>
+                            <textarea id="aciklama" name="aciklama" placeholder="Randevunuzla ilgili detaylı bilgi giriniz..."></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-calendar-plus"></i> Randevu Oluştur
+                        </button>
+                    </form>
+                </section>
+
+                <!-- Testimonials -->
+                <section class="testimonials-section">
+                    <div class="container">
+                        <h2 class="section-title" style="color: white; margin-bottom: 40px;">
+                            <i class="fas fa-quote-left"></i>
+                            Müşteri Yorumları
+                        </h2>
+                        <div class="testimonials-grid">
+                            <div class="testimonial-card">
+                                <div class="testimonial-stars">★★★★★</div>
+                                <p class="testimonial-text">"Randevu sistemi çok kullanışlı ve hızlı. Hiç sorun yaşamadım. Kesinlikle tavsiye ederim!"</p>
+                                <div class="testimonial-author">
+                                    <div class="author-avatar">AE</div>
+                                    Ahmet Eren
+                                </div>
+                            </div>
+                            <div class="testimonial-card">
+                                <div class="testimonial-stars">★★★★★</div>
+                                <p class="testimonial-text">"Profesyonel ve güvenli. Tüm verilerim güvende hissettim. Çok memnunum."</p>
+                                <div class="testimonial-author">
+                                    <div class="author-avatar">FA</div>
+                                    Fatih Aydın
+                                </div>
+                            </div>
+                            <div class="testimonial-card">
+                                <div class="testimonial-stars">★★★★★</div>
+                                <p class="testimonial-text">"Müşteri desteği harika. Sorularımı çok hızlı cevaplandırdılar."</p>
+                                <div class="testimonial-author">
+                                    <div class="author-avatar">SA</div>
+                                    Seda Akçay
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Sidebar -->
+            <aside class="sidebar">
+                <div class="info-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Hızlı Randevu</h3>
+                    <p>Randevunuz hemen onaylanır ve size SMS ile teyit gönderilir.</p>
+                </div>
+
+                <div class="info-card">
+                    <i class="fas fa-lock"></i>
+                    <h3>Güvenli İşlem</h3>
+                    <p>Tüm verileriniz şifreli olarak saklanır ve korunur.</p>
+                </div>
+
+                <div class="info-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Mobil Uyumlu</h3>
+                    <p>Her türlü cihazdan rahatça randevu alabilirsiniz.</p>
+                </div>
+
+                <div class="info-card">
+                    <i class="fas fa-headset"></i>
+                    <h3>7/24 Destek</h3>
+                    <p>Sorun yaşadığınızda anında destek ekibimiz yardımınıza hazır.</p>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Hakkımızda</h4>
+                    <p>Randevu Sistemi, 2025 yılından beri müşterilerine en iyi hizmeti sunmaktadır.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Hızlı Linkler</h4>
+                    <a href="#hizmetler">Hizmetler</a>
+                    <a href="#iletisim">İletişim</a>
+                    <a href="#">Gizlilik Politikası</a>
+                    <a href="#">Kullanım Koşulları</a>
+                </div>
+                <div class="footer-section">
+                    <h4>İletişim</h4>
+                    <p>📞 +90 (555) 123-4567</p>
+                    <p>📧 info@randevusistemi.com</p>
+                    <p>📍 İstanbul, Türkiye</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Randevu Sistemi. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Bugünden önceki tarihleri seçmeyi engelle
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('tarih').min = today;
+        
+        // Form validasyonu
+        document.querySelector('.randevu-form').addEventListener('submit', function(e) {
+            const telefon = document.getElementById('telefon').value;
+            const email = document.getElementById('email').value;
+            
+            // Basit telefon validasyonu (sadece rakam ve bazı karakterler)
+            const telefonRegex = /^[\d\+\(\)\-\s]+$/;
+            if (!telefonRegex.test(telefon)) {
+                e.preventDefault();
+                alert('Lütfen geçerli bir telefon numarası giriniz.');
+                return false;
+            }
+            
+            // E-posta validasyonu
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                e.preventDefault();
+                alert('Lütfen geçerli bir e-posta adresi giriniz.');
+                return false;
+            }
+        });
+    </script>
+</body>
+</html>

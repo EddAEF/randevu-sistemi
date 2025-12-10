@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Randevu Sistemi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h2>📅 Randevu Oluştur</h2>
+                <p>Hızlı ve kolay bir şekilde yerinizi ayırtın.</p>
+            </div>
+            
+            <div class="card-body">
+                {% if bildirim %}
+                <div class="alert-success">
+                    {{ bildirim }}
+                </div>
+                {% endif %}
+
+                <form method="POST" action="/">
+                    <div class="form-group">
+                        <label>Ad Soyad</label>
+                        <input type="text" name="ad" placeholder="Örn: Ahmet Yılmaz" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>E-Posta Adresi</label>
+                        <input type="email" name="email" placeholder="ornek@email.com" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group half">
+                            <label>Tarih</label>
+                            <input type="date" name="tarih" required>
+                        </div>
+                        <div class="form-group half">
+                            <label>Bölüm Seçiniz</label>
+                            <select name="bolum" required>
+                                <option value="" disabled selected>Seçiniz...</option>
+                                <option value="Dahiliye">Dahiliye</option>
+                                <option value="Göz">Göz Hastalıkları</option>
+                                <option value="Diş">Diş Hekimliği</option>
+                                <option value="Kardiyoloji">Kardiyoloji</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Randevu Al</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
