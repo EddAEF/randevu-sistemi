@@ -47,7 +47,8 @@ body {
 .header-content { 
     display: flex; 
     align-items: center; 
-    gap: 16px; 
+    gap: 60px; 
+    justify-content: space-between;
 }
 
 .header-content i { 
