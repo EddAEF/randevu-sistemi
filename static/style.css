@@ -658,3 +658,23 @@ html, body {
 .opacity-80 {
     opacity: 0.8;
 }
+
+/* Hero Button */
+.btn-hero {
+    display: inline-block;
+    background-color: var(--secondary);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(243, 156, 18, 0.4);
+}
+
+.btn-hero:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(243, 156, 18, 0.6);
+    background-color: #e67e22;
+}
