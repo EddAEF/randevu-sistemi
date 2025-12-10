@@ -14,20 +14,20 @@
             <div class="header-content">
                 <a href="/" class="logo">
                     <i class="fas fa-calendar-check"></i>
-                    Randevu Sistemi
+                    <span>Randevu Sistemi</span>
                 </a>
                 <nav class="nav-menu">
                     <a href="/" class="nav-link active">
-                        <i class="fas fa-home"></i> Ana Sayfa
+                        <i class="fas fa-home"></i> <span>Ana Sayfa</span>
                     </a>
                     <a href="#hizmetler" class="nav-link">
-                        <i class="fas fa-briefcase"></i> Hizmetler
+                        <i class="fas fa-briefcase"></i> <span>Hizmetler</span>
                     </a>
                     <a href="#randevu-formu" class="nav-link">
-                        <i class="fas fa-calendar-alt"></i> Randevu Al
+                        <i class="fas fa-calendar-alt"></i> <span>Randevu Al</span>
                     </a>
                     <a href="#iletisim" class="nav-link">
-                        <i class="fas fa-phone"></i> İletişim
+                        <i class="fas fa-phone"></i> <span>İletişim</span>
                     </a>
                 </nav>
             </div>
@@ -322,6 +322,16 @@
                 e.preventDefault();
                 alert('Lütfen geçerli bir e-posta adresi giriniz.');
                 return false;
+            }
+        });
+
+        // Header Shrink on Scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.classList.add('shrink');
+            } else {
+                header.classList.remove('shrink');
             }
         });
     </script>

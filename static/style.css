@@ -681,3 +681,56 @@ html, body {
     box-shadow: 0 6px 20px rgba(243, 156, 18, 0.6);
     background-color: #e67e22;
 }
+
+/* Shrink Header Styles */
+.header {
+    transition: all 0.3s ease;
+}
+
+.header.shrink {
+    padding: 10px 0;
+    background: rgba(26, 58, 82, 0.95);
+}
+
+.header.shrink .logo {
+    font-size: 20px;
+}
+
+.header.shrink .logo i {
+    font-size: 24px;
+    padding: 6px;
+}
+
+/* Mobile specific shrink behavior */
+@media (max-width: 768px) {
+    .header.shrink .header-content {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0 10px;
+        gap: 10px;
+    }
+
+    .header.shrink .nav-menu {
+        flex-direction: row;
+        gap: 15px;
+        width: auto;
+        margin: 0;
+    }
+
+    .header.shrink .nav-link span {
+        display: none;
+    }
+    
+    .header.shrink .nav-link i {
+        font-size: 20px;
+        margin: 0;
+    }
+    
+    .header.shrink .logo span {
+        display: none;
+    }
+    
+    .header.shrink .logo i {
+        margin: 0;
+    }
+}
