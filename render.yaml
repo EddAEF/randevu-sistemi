@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: randevu-sistemi
+    runtime: python
+    runtimeVersion: 3.9
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: FLASK_DEBUG
+        value: "False"
+    plan: free
