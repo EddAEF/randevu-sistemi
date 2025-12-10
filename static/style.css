@@ -203,7 +203,7 @@ body {
 .section-title {
     font-size: 28px;
     color: var(--primary);
-    margin-bottom: 30px;
+    margin-bottom: 46px; /* 30px + 16px = 46px, yaklaşık 1cm boşluk */
     display: flex;
     align-items: center;
     gap: 12px;
