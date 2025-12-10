@@ -8,3 +8,4 @@ click
 itsdangerous
 gunicorn
 
+Flask-Mail
