@@ -95,6 +95,12 @@ body {
     background: rgba(255,255,255,0.05);
 }
 
+.nav-link i {
+    font-size: 16px;
+    padding: 0;
+    background: transparent;
+}
+
 .nav-link:hover {
     color: white;
     background: rgba(255,255,255,0.15);
