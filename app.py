@@ -124,7 +124,7 @@ def api_randevular():
 # API - Belirli Bir Randevuyu Al
 @app.route('/api/randevular/<int:id>')
 def api_randevu_detay(id):
-        randevu = Randevu.query.get_or_404(id)
+    randevu = Randevu.query.get_or_404(id)
     return jsonify(randevu.to_dict())
 
 # API - Randevu Durumunu Güncelle
