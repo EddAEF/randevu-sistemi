@@ -60,23 +60,23 @@ body {
 .logo {
     display: flex;
     align-items: center;
-    gap: 12px;
-    font-size: 24px;
-    font-weight: 700;
+    gap: 10px;
+    font-size: 20px;
+    font-weight: 600;
     text-decoration: none;
     color: white;
 }
 
 .logo i {
-    font-size: 32px;
-    background: rgba(255,255,255,0.2);
-    padding: 8px 12px;
+    font-size: 24px;
+    background: rgba(255,255,255,0.15);
+    padding: 8px;
     border-radius: 8px;
 }
 
 .nav-menu {
     display: flex;
-    gap: 30px;
+    gap: 20px;
     align-items: center;
 }
 
@@ -84,21 +84,28 @@ body {
     color: rgba(255,255,255,0.9); 
     text-decoration: none; 
     font-weight: 500; 
+    font-size: 14px;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.05);
 }
 
 .nav-link:hover {
-    color: var(--secondary);
-    transform: translateY(-2px);
+    color: white;
+    background: rgba(255,255,255,0.15);
+    transform: translateY(-1px);
 }
 
 .nav-link.active {
-    color: var(--secondary);
-    border-bottom: 2px solid var(--secondary);
+    color: white;
+    background: var(--secondary);
+    border-bottom: none;
     padding-bottom: 8px;
+    box-shadow: 0 2px 10px rgba(243, 156, 18, 0.3);
 }
 
 /* Hero Section */
