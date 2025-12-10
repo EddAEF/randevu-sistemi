@@ -8,9 +8,16 @@ app = Flask(__name__)
 
 # Veritabanı Yapılandırması
 basedir = os.path.abspath(os.path.dirname(__file__))
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'randevular.db')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.secret_key = 'randevu-sistemi-secret-key-2025'
+default_db_uri = 'sqlite:///' + os.path.join(basedir, 'randevular.db')
+
+# Ortak konfigürasyonları yükle (config.py) ve env ile override et
+app.config.from_object('config')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', default_db_uri)
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = app.config.get('SQLALCHEMY_TRACK_MODIFICATIONS', False)
+app.secret_key = os.environ.get(
+    'SECRET_KEY',
+    app.config.get('SECRET_KEY', 'randevu-sistemi-secret-key-2025')
+)
 
 # Veritabanı
 db = SQLAlchemy(app)

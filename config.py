@@ -3,6 +3,7 @@
 # Flask Ayarları
 DEBUG = True
 TESTING = False
+SECRET_KEY = 'change-this-in-production'
 
 # Veritabanı
 SQLALCHEMY_TRACK_MODIFICATIONS = False
